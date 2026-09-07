@@ -1,0 +1,11 @@
+# Archivos pesados que exceden el límite de GitHub (100 MB)
+fotos y videos.zip
+*.zip
+
+# Archivos temporales de medios extraídos
+extracted_media/
+
+# Archivos del sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store

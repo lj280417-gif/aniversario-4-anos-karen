@@ -1,0 +1,18 @@
+=========================================
+CARPETA DE IMÁGENES - GUÍA DE REEMPLAZO
+=========================================
+
+Aquí podrás colocar todas las fotos de su historia juntos:
+
+1. Recomendación de nombres para organizar tus fotos:
+   - foto-portada.jpg
+   - recuerdo-1.jpg, recuerdo-2.jpg, recuerdo-3.jpg...
+   - hito-1.jpg, hito-2.jpg... (para la línea de tiempo)
+   - momento-1.jpg, momento-2.jpg... (para momentos especiales)
+
+2. Formatos recomendados:
+   - JPG o PNG
+   - Para mejor rendimiento, fotos entre 800px y 1920px de ancho.
+
+3. Dónde modificar:
+   - En index.html, busca las etiquetas <img> o clases con "placeholder" y reemplaza la ruta por "assets/images/tu-foto.jpg".

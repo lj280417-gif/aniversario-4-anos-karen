@@ -1,0 +1,16 @@
+=========================================
+CARPETA DE MÚSICA - GUÍA DE REEMPLAZO
+=========================================
+
+Canción configurada para Karen:
+"Por el resto de mi vida" — Andrés Cepeda
+
+1. Nombres admitidos para el archivo de música:
+   - por-el-resto-de-mi-vida.mp3
+   - cancion.mp3
+
+2. Formato recomendado:
+   - Archivo de audio .mp3
+
+3. Activación:
+   - Tan pronto copies tu archivo a esta carpeta (assets/music/por-el-resto-de-mi-vida.mp3 o cancion.mp3), el reproductor de la página web lo detectará y reproducirá automáticamente cuando tú o Karen presionen el botón de reproducción con forma de píldora flotante.

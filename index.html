@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 Años Contigo ❤️ | Feliz Aniversario</title>
+  <meta name="description" content="Celebrando 4 años de amor, momentos inolvidables y una historia que todavía estamos escribiendo juntos.">
+
+  <!-- Google Fonts: Elegancia clásica y caligrafía íntima -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Lienzo interactivo de corazones y estrellas flotantes -->
+  <canvas id="ambientCanvas"></canvas>
+
+  <!-- Reproductor de música flotante -->
+  <div class="music-player-pill" id="musicPlayer" title="Reproducir / Pausar nuestra canción">
+    <button class="music-btn" id="musicToggleBtn" aria-label="Controlar música">
+      <span class="music-icon" id="musicIcon">🎵</span>
+      <div class="sound-wave" id="soundWave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+    <div class="music-info">
+      <span class="music-title" id="musicTitle">"Por el resto de mi vida" — Andrés Cepeda</span>
+      <span class="music-status" id="musicStatus">Haz clic para reproducir</span>
+    </div>
+    <audio id="audioElement" src="assets/music/por-el-resto-de-mi-vida.mp3" preload="auto" loop>
+      <!-- Archivo de música configurado exactamente en assets/music/por-el-resto-de-mi-vida.mp3 -->
+      <source src="assets/music/por-el-resto-de-mi-vida.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Barra de navegación flotante minimalista -->
+  <nav class="floating-nav" id="mainNav">
+    <a href="#hero" class="nav-dot active" title="Inicio" aria-label="Inicio"><span></span></a>
+    <a href="#historia" class="nav-dot" title="Nuestra Historia" aria-label="Nuestra Historia"><span></span></a>
+    <a href="#contador" class="nav-dot" title="Tiempo Juntos" aria-label="Tiempo Juntos"><span></span></a>
+    <a href="#galeria" class="nav-dot" title="Galería" aria-label="Galería"><span></span></a>
+    <a href="#momentos" class="nav-dot" title="Momentos Especiales" aria-label="Momentos Especiales"><span></span></a>
+    <a href="#videos" class="nav-dot" title="Videos" aria-label="Videos"><span></span></a>
+    <a href="#carta" class="nav-dot" title="Carta para ti" aria-label="Carta para ti"><span></span></a>
+    <a href="#final" class="nav-dot" title="El Final" aria-label="El Final"><span></span></a>
+  </nav>
+
+  <!-- ========================================================
+       1. PORTADA / HERO (PANTALLA COMPLETA)
+       ======================================================== -->
+  <header class="hero-section" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      
+      <!-- Fotografía de Portada Destacada -->
+      <div class="hero-couple-badge">
+        <img src="assets/images/IMG_0273.jpg" alt="Karen y yo" class="hero-couple-avatar">
+      </div>
+
+      <!-- Corazón romántico animado -->
+      <div class="hero-heart-container">
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring delay"></div>
+        <div class="hero-heart-emblem">
+          <svg viewBox="0 0 100 90" class="svg-heart">
+            <path d="M 0,30 A 25,25 0 0,1 50,20 A 25,25 0 0,1 100,30 Q 100,60 50,90 Q 0,60 0,30 Z" />
+          </svg>
+          <span class="heart-number">4</span>
+        </div>
+      </div>
+
+      <div class="hero-badge">NUESTRO 4º ANIVERSARIO</div>
+
+      <!-- Texto principal -->
+      <h1 class="hero-title">4 AÑOS CONTIGO <span class="heart-symbol">❤️</span></h1>
+      
+      <!-- Frase emotiva personalizada para Karen -->
+      <p class="hero-subtitle">
+        <span class="typewriter-text" id="typewriterText">Karen, una historia que todavía estamos escribiendo...</span>
+      </p>
+
+      <p class="hero-subphrase">Cada segundo a tu lado ha valido cada latido.</p>
+
+      <!-- Botón de scroll suave hacia la historia -->
+      <a href="#historia" class="romantic-btn hero-btn" id="startBtn">
+        <span class="btn-text">Comenzar nuestra historia ❤️</span>
+        <span class="btn-glow"></span>
+      </a>
+
+      <!-- Indicador de desplazamiento hacia abajo -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <span class="mouse-wheel"></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         2. NUESTRA HISTORIA (LÍNEA DEL TIEMPO CRONOLÓGICA 2022 - 2026)
+         ======================================================== -->
+    <section class="section-container timeline-section" id="historia">
+      <div class="section-header reveal">
+        <span class="section-tag">Capítulos de Nuestro Amor</span>
+        <h2 class="section-title">Nuestra Historia</h2>
+        <p class="section-description">Un recorrido cronológico por los momentos que convirtieron dos caminos en una sola vida.</p>
+        <div class="divider-hearts"><span>❤️</span></div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Hito 1: Inicio de nuestra historia (16 de Septiembre de 2022) -->
+        <article class="timeline-item left reveal">
+          <div class="timeline-dot"><span>✨</span></div>
+          <div class="timeline-card">
+            <div class="timeline-date">16 de Septiembre de 2022</div>
+            <h3 class="timeline-heading">El Inicio de Nuestra Historia</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/1.jpg" alt="Nuestras manos entrelazadas al inicio de nuestra historia" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              El primer capítulo de nuestro camino juntos. El 16 de septiembre de 2022 comenzó esta aventura que transformó nuestras vidas y unió nuestros corazones para siempre.
+            </p>
+            <div class="timeline-quote">"Donde empezó el mejor capítulo de mi vida."</div>
+          </div>
+        </article>
+
+        <!-- Hito 2: Primeros momentos (Octubre 2022) -->
+        <article class="timeline-item right reveal">
+          <div class="timeline-dot"><span>💌</span></div>
+          <div class="timeline-card">
+            <div class="timeline-date">Octubre de 2022</div>
+            <h3 class="timeline-heading">Nuestros Primeros Momentos</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/IMG_20221020_212630.jpg" alt="Primeros momentos abrazados" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              Aquellas primeras salidas donde el tiempo se detenía, las conversaciones interminables y la magia de abrazarnos con la certeza de haber encontrado a la persona indicada.
+            </p>
+            <div class="timeline-quote">"Descubrirte fue lo más lindo que me pudo pasar."</div>
+          </div>
+        </article>
+
+        <!-- Hito 3: Momentos especiales (Septiembre 2023 - 1 Año Juntos) -->
+        <article class="timeline-item left reveal">
+          <div class="timeline-dot"><span>🥂</span></div>
+          <div class="timeline-card">
+            <div class="timeline-date">Septiembre de 2023</div>
+            <h3 class="timeline-heading">Nuestro Primer Año Juntos</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/IMG_0336.jpg" alt="Celebrando nuestro primer año juntos bajo las luces" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              365 días descubriendo que cada día a tu lado supera al anterior. Manos unidas bajo las luces, celebrando doce meses de complicidad, respeto y cariño profundo.
+            </p>
+            <div class="timeline-quote">"Cada segundo a tu lado se convierte en oro."</div>
+          </div>
+        </article>
+
+        <!-- Hito 4: Aventuras (Abril 2024 - Valle de Cocora) -->
+        <article class="timeline-item right reveal">
+          <div class="timeline-dot"><span>⛰️</span></div>
+          <div class="timeline-card">
+            <div class="timeline-date">Abril de 2024</div>
+            <h3 class="timeline-heading">Aventuras en el Valle de Cocora</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/IMG_5005.jpg" alt="Cabalgata en el Valle de Cocora" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              Cabalgando entre montañas verdes y palmas majestuosas. Explorando paisajes soñados de la mano, riendo juntos y guardando en la memoria una aventura inolvidable.
+            </p>
+            <div class="timeline-quote">"Cualquier lugar en el mapa es perfecto si es contigo."</div>
+          </div>
+        </article>
+
+        <!-- Hito 5: Momentos que iluminan nuestro camino (Diciembre 2024) -->
+        <article class="timeline-item left reveal">
+          <div class="timeline-dot"><span>🕯️</span></div>
+          <div class="timeline-card">
+            <div class="timeline-date">Diciembre de 2024</div>
+            <h3 class="timeline-heading">Noche de Velitas y Deseos Compartidos</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/IMG_2731.jpg" alt="Noche de velitas juntos en Navidad" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              Encendiendo nuestros deseos juntos en una noche llena de calidez, tradición y amor. Apoyándonos mutuamente y demostrando que siempre iluminamos el camino del otro.
+            </p>
+            <div class="timeline-quote">"En las buenas y en las malas, siempre juntos."</div>
+          </div>
+        </article>
+
+        <!-- Hito 6: 4 años juntos (Septiembre 2026) -->
+        <article class="timeline-item right highlight-milestone reveal">
+          <div class="timeline-dot special-dot"><span>💖</span></div>
+          <div class="timeline-card milestone-card">
+            <div class="timeline-badge">Hito Dorado</div>
+            <div class="timeline-date">Septiembre de 2026</div>
+            <h3 class="timeline-heading">4 Años Construyendo Nuestro Destino</h3>
+            <div class="timeline-img-container">
+              <img src="assets/images/IMG_3034.jpg" alt="Celebrando 4 años juntos" loading="lazy">
+            </div>
+            <p class="timeline-text">
+              4 años construyendo un amor real, fuerte y genuino. Miramos hacia atrás con inmensa gratitud por todo lo vivido y hacia adelante con la emoción de todo lo que aún soñamos lograr.
+            </p>
+            <div class="timeline-quote">"4 años son apenas el prólogo de toda una eternidad."</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         3. CONTADOR DE 4 AÑOS
+         ======================================================== -->
+    <section class="section-container counter-section" id="contador">
+      <div class="section-header reveal">
+        <span class="section-tag">Medir Lo Inconmensurable</span>
+        <h2 class="section-title">El Tiempo a Tu Lado</h2>
+        <p class="section-description">Aunque el amor no se mide en números, cada instante contigo ha sido un regalo.</p>
+        <div class="divider-hearts"><span>⏳</span></div>
+      </div>
+
+      <!-- Tarjetas estadísticas principales -->
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-icon">👑</div>
+          <div class="stat-number" id="statYears">4</div>
+          <div class="stat-label">AÑOS</div>
+          <div class="stat-sub">De miradas cómplices</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🌙</div>
+          <div class="stat-number" id="statMonths">48</div>
+          <div class="stat-label">MESES</div>
+          <div class="stat-sub">Creciendo de la mano</div>
+        </div>
+
+        <div class="stat-card highlight">
+          <div class="stat-icon">☀️</div>
+          <div class="stat-number" id="statDays">1460</div>
+          <div class="stat-label">DÍAS</div>
+          <div class="stat-sub">Eligiéndote cada mañana</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💫</div>
+          <div class="stat-number infinite-symbol">∞</div>
+          <div class="stat-label">RECUERDOS</div>
+          <div class="stat-sub">Y muchísimos más por crear</div>
+        </div>
+      </div>
+
+      <!-- Reloj en vivo dinámico preparado para la fecha exacta -->
+      <div class="live-clock-wrapper reveal">
+        <h3 class="live-clock-title">Tiempo exacto compartiendo nuestros latidos:</h3>
+        <p class="live-clock-hint">(Preparado para calcular automáticamente los días exactos cuando definas tu fecha inicial)</p>
+        
+        <div class="live-clock" id="liveTimer">
+          <div class="clock-unit">
+            <span class="clock-value" id="clockDays">1460</span>
+            <span class="clock-text">Días</span>
+          </div>
+          <span class="clock-separator">:</span>
+          <div class="clock-unit">
+            <span class="clock-value" id="clockHours">00</span>
+            <span class="clock-text">Horas</span>
+          </div>
+          <span class="clock-separator">:</span>
+          <div class="clock-unit">
+            <span class="clock-value" id="clockMinutes">00</span>
+            <span class="clock-text">Minutos</span>
+          </div>
+          <span class="clock-separator">:</span>
+          <div class="clock-unit">
+            <span class="clock-value" id="clockSeconds">00</span>
+            <span class="clock-text">Segundos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. GALERÍA DE RECUERDOS (RECUERDOS REPRESENTATIVOS + COLECCIÓN COMPLETA)
+         ======================================================== -->
+    <section class="section-container gallery-section" id="galeria">
+      <div class="section-header reveal">
+        <span class="section-tag">Instantes Eternos</span>
+        <h2 class="section-title">Galería de Recuerdos</h2>
+        <p class="section-description">Una selección de nuestras mejores memorias. Haz clic en cualquier foto para verla en tamaño completo.</p>
+        <div class="divider-hearts"><span>📸</span></div>
+      </div>
+
+      <!-- Cuadrícula Principal (8 fotos destacadas de los 4 años) -->
+      <div class="gallery-grid">
+        
+        <!-- Foto 1: Septiembre 2022 -->
+        <div class="gallery-card reveal" data-title="Dulzura y Sonrisas" data-desc="21 de Septiembre de 2022 - Compartiendo momentos tiernos y espontáneos." data-img="assets/images/2.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/2.jpg" alt="Dulzura y Sonrisas" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Dulzura y Sonrisas</h4>
+              <p class="overlay-sub">Septiembre de 2022</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Dulzura y Sonrisas (Septiembre 2022)</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 2: Febrero 2023 -->
+        <div class="gallery-card reveal" data-title="San Valentín y Amor" data-desc="15 de Febrero de 2023 - Celebrando el cariño en días especiales." data-img="assets/images/1676506113000.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/1676506113000.jpg" alt="San Valentín y Amor" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">San Valentín y Amor</h4>
+              <p class="overlay-sub">Febrero de 2023</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Febrero de 2023</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 3: Abril 2023 -->
+        <div class="gallery-card reveal" data-title="Tardes Soleadas" data-desc="9 de Abril de 2023 - Disfrutando de la tranquilidad de estar juntos." data-img="assets/images/IMG-20230409-WA0060.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG-20230409-WA0060.jpg" alt="Tardes Soleadas" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Tardes Soleadas</h4>
+              <p class="overlay-sub">Abril de 2023</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Abril de 2023</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 4: Agosto 2023 -->
+        <div class="gallery-card reveal" data-title="Nuestra Tarde Rosa" data-desc="16 de Agosto de 2023 - Risas y fotos cómplices en el sillón de terciopelo." data-img="assets/images/IMG_20230816_150524.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_20230816_150524.jpg" alt="Nuestra Tarde Rosa" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Nuestra Tarde Rosa</h4>
+              <p class="overlay-sub">Agosto de 2023</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Agosto de 2023</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 5: Noviembre 2023 -->
+        <div class="gallery-card reveal" data-title="Cómplices de Vida" data-desc="21 de Noviembre de 2023 - Una mirada que lo dice todo." data-img="assets/images/IMG_2418.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_2418.jpg" alt="Cómplices de Vida" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Cómplices de Vida</h4>
+              <p class="overlay-sub">Noviembre de 2023</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Noviembre de 2023</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 6: Enero 2024 -->
+        <div class="gallery-card reveal" data-title="Comenzando el Año Juntos" data-desc="7 de Enero de 2024 - Nuevas metas y sueños de la mano." data-img="assets/images/IMG_3561.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_3561.jpg" alt="Comenzando el Año Juntos" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Comenzando el Año Juntos</h4>
+              <p class="overlay-sub">Enero de 2024</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Enero de 2024</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 7: Noviembre 2024 -->
+        <div class="gallery-card reveal" data-title="Luz de Atardecer" data-desc="11 de Noviembre de 2024 - Sonrisas brillantes bajo el cielo abierto." data-img="assets/images/IMG_2253.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_2253.jpg" alt="Luz de Atardecer" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Luz de Atardecer</h4>
+              <p class="overlay-sub">Noviembre de 2024</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Noviembre de 2024</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+        <!-- Foto 8: Marzo 2025 -->
+        <div class="gallery-card reveal" data-title="Noche en Cartagena" data-desc="31 de Marzo de 2025 - La magia histórica de las murallas iluminadas." data-img="assets/images/IMG_4477.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_4477.jpg" alt="Noche en Cartagena" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="overlay-icon">🔍</span>
+              <h4 class="overlay-title">Noche en Cartagena</h4>
+              <p class="overlay-sub">Marzo de 2025</p>
+            </div>
+          </div>
+          <div class="gallery-card-footer">
+            <span class="card-caption">Marzo de 2025</span>
+            <span class="card-heart">❤️</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cuadrícula Expandible con el Resto de las Fotografías -->
+      <div class="gallery-extra-container" id="galleryExtraContainer">
+
+        <!-- Foto Extra: Abril 2023 -->
+        <div class="gallery-card" data-title="Recuerdo de Abril" data-desc="Abril de 2023 - Instantes guardados con cariño." data-img="assets/images/IMG-20230403-WA0051.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG-20230403-WA0051.jpg" alt="Recuerdo de Abril" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Recuerdo Especial</h4><p class="overlay-sub">Abril 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Abril 2023 (2) -->
+        <div class="gallery-card" data-title="Sonrisas Cómplices" data-desc="Abril de 2023 - Momentos que alegran el alma." data-img="assets/images/IMG-20230403-WA0069.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG-20230403-WA0069.jpg" alt="Sonrisas Cómplices" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Sonrisas Cómplices</h4><p class="overlay-sub">Abril 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Abril 2023 (3) -->
+        <div class="gallery-card" data-title="Paseos de Primavera" data-desc="Abril de 2023 - Caminando juntos." data-img="assets/images/IMG-20230406-WA0027.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG-20230406-WA0027.jpg" alt="Paseos de Primavera" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Paseos de Primavera</h4><p class="overlay-sub">Abril 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Mayo 2023 -->
+        <div class="gallery-card" data-title="Detalles que Enamoran" data-desc="Mayo de 2023 - La belleza de lo simple." data-img="assets/images/099cf689-52af-4912-a18d-26d4f3b84856.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/099cf689-52af-4912-a18d-26d4f3b84856.jpg" alt="Detalles que Enamoran" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Detalles que Enamoran</h4><p class="overlay-sub">Mayo 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Mayo de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2023 -->
+        <div class="gallery-card" data-title="Tardes Inolvidables" data-desc="Junio de 2023 - Alegría compartida." data-img="assets/images/IMG_20230603_163258.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_20230603_163258.jpg" alt="Tardes Inolvidables" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Tardes Inolvidables</h4><p class="overlay-sub">Junio 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Junio de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2023 (2) -->
+        <div class="gallery-card" data-title="Beso en la Mejilla" data-desc="19 de Junio de 2023 - Ternura y cariño sincero." data-img="assets/images/IMG_20230619_124824.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_20230619_124824.jpg" alt="Beso en la Mejilla" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Beso en la Mejilla</h4><p class="overlay-sub">Junio 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">19 de Junio de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2023 (3) -->
+        <div class="gallery-card" data-title="Día de Paseo" data-desc="19 de Junio de 2023 - Creando memorias." data-img="assets/images/IMG_20230619_131334.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_20230619_131334.jpg" alt="Día de Paseo" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Día de Paseo</h4><p class="overlay-sub">Junio 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">19 de Junio de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Diciembre 2023 -->
+        <div class="gallery-card" data-title="Cierre de Año 2023" data-desc="Diciembre de 2023 - Agradecidos por otro año juntos." data-img="assets/images/IMG_2720.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_2720.jpg" alt="Cierre de Año 2023" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Cierre de Año</h4><p class="overlay-sub">Diciembre 2023</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Diciembre de 2023</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Enero 2024 -->
+        <div class="gallery-card" data-title="Enero Radiante" data-desc="7 de Enero de 2024 - Bienvenido 2024 juntos." data-img="assets/images/IMG_3556.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_3556.jpg" alt="Enero Radiante" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Enero Radiante</h4><p class="overlay-sub">Enero 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Enero de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Marzo 2024 -->
+        <div class="gallery-card" data-title="Escapada de Fin de Semana" data-desc="30 de Marzo de 2024 - Desconectando del mundo." data-img="assets/images/IMG_4881.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_4881.jpg" alt="Escapada de Fin de Semana" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Escapada Juntos</h4><p class="overlay-sub">Marzo 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Marzo de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Abril 2024 (Cocora detalle) -->
+        <div class="gallery-card" data-title="Valle de Cocora" data-desc="5 de Abril de 2024 - Montañas y palmas de cera." data-img="assets/images/IMG_5108.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_5108.jpg" alt="Valle de Cocora" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Valle de Cocora</h4><p class="overlay-sub">Abril 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Abril 2024 (2) -->
+        <div class="gallery-card" data-title="Paseo de Abril" data-desc="6 de Abril de 2024 - Descubriendo rincones hermosos." data-img="assets/images/IMG_5182.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_5182.jpg" alt="Paseo de Abril" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Paseo de Abril</h4><p class="overlay-sub">Abril 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Abril 2024 (3) -->
+        <div class="gallery-card" data-title="Noche de Charlas" data-desc="6 de Abril de 2024 - Conversaciones que llenan el corazón." data-img="assets/images/IMG_5215.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_5215.jpg" alt="Noche de Charlas" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Noche de Charlas</h4><p class="overlay-sub">Abril 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Abril de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2024 (Mariposario) -->
+        <div class="gallery-card" data-title="Mariposas y Magia" data-desc="10 de Junio de 2024 - Naturaleza y alegría." data-img="assets/images/IMG_6152.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_6152.jpg" alt="Mariposas y Magia" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Mariposas y Magia</h4><p class="overlay-sub">Junio 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Junio de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2024 (2) -->
+        <div class="gallery-card" data-title="Explorando el Jardín" data-desc="10 de Junio de 2024 - Cada momento es especial." data-img="assets/images/IMG_6154.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_6154.jpg" alt="Explorando el Jardín" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Explorando el Jardín</h4><p class="overlay-sub">Junio 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Junio de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Junio 2024 (3) -->
+        <div class="gallery-card" data-title="Risas en el Paseo" data-desc="10 de Junio de 2024 - Disfrutando de la vida juntos." data-img="assets/images/IMG_6332.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_6332.jpg" alt="Risas en el Paseo" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Risas en el Paseo</h4><p class="overlay-sub">Junio 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Junio de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: Julio 2024 -->
+        <div class="gallery-card" data-title="Atardecer de Julio" data-desc="14 de Julio de 2024 - Caminos que recorremos de la mano." data-img="assets/images/IMG_7026.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/IMG_7026.jpg" alt="Atardecer de Julio" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Atardecer de Julio</h4><p class="overlay-sub">Julio 2024</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">Julio de 2024</span><span class="card-heart">❤️</span></div>
+        </div>
+
+        <!-- Foto Extra: 2025 -->
+        <div class="gallery-card" data-title="Momentos de Dos" data-desc="2025 - Consolidando nuestro amor cada día." data-img="assets/images/52418991-ad16-4395-9bf9-0c7acabd5321.jpg">
+          <div class="gallery-image-wrapper">
+            <img src="assets/images/52418991-ad16-4395-9bf9-0c7acabd5321.jpg" alt="Momentos de Dos" loading="lazy">
+            <div class="gallery-overlay"><span class="overlay-icon">🔍</span><h4 class="overlay-title">Momentos de Dos</h4><p class="overlay-sub">2025</p></div>
+          </div>
+          <div class="gallery-card-footer"><span class="card-caption">2025</span><span class="card-heart">❤️</span></div>
+        </div>
+
+      </div>
+
+      <!-- Botón para Expandir / Contraer la Colección Completa -->
+      <div class="gallery-expand-wrapper">
+        <button class="gallery-expand-btn" id="galleryExpandBtn">
+          <span>Ver todos nuestros recuerdos (Colección completa ❤️)</span>
+          <span>⬇️</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         5. MOMENTOS ESPECIALES (TARJETAS DESTACADAS)
+         ======================================================== -->
+    <section class="section-container memories-section" id="momentos">
+      <div class="section-header reveal">
+        <span class="section-tag">Colección de Latidos</span>
+        <h2 class="section-title">Momentos Especiales</h2>
+        <p class="section-description">Aventuras, celebraciones y recuerdos que marcaron profundamente nuestra historia.</p>
+        <div class="divider-hearts"><span>🌹</span></div>
+      </div>
+
+      <div class="memories-grid">
+
+        <!-- Momento Especial 1: Mariposario -->
+        <article class="memory-card reveal" data-title="Aventura en el Mariposario" data-desc="10 de Junio de 2024 - Rodeados de mariposas posadas en nuestras manos y de una felicidad pura que jamás olvidaremos." data-img="assets/images/IMG_6306.jpg">
+          <div class="memory-media-container">
+            <img src="assets/images/IMG_6306.jpg" alt="Aventura en el Mariposario" loading="lazy">
+          </div>
+          <div class="memory-content">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> 10 de Junio de 2024
+            </div>
+            <h3 class="memory-title">Aventura en el Mariposario</h3>
+            <p class="memory-desc">
+              Un día rodeados de naturaleza donde las mariposas se posaron en nuestras manos. Ver tu sonrisa y compartir ese momento mágico es algo que guardo para siempre.
+            </p>
+            <div class="memory-footer">
+              <span class="memory-quote">"Tu sonrisa hace brillar cada rincón."</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Momento Especial 2: Cartagena -->
+        <article class="memory-card reveal" data-title="Castillo de San Felipe, Cartagena" data-desc="3 de Abril de 2025 - Recorriendo las murallas de la ciudad heroica con vista a la bahía y el mar Caribe." data-img="assets/images/IMG_4658.jpg">
+          <div class="memory-media-container">
+            <img src="assets/images/IMG_4658.jpg" alt="Castillo de San Felipe, Cartagena" loading="lazy">
+          </div>
+          <div class="memory-content">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> 3 de Abril de 2025
+            </div>
+            <h3 class="memory-title">Castillo de San Felipe, Cartagena</h3>
+            <p class="memory-desc">
+              Caminando sobre la historia en lo alto de la fortaleza con la brisa del Caribe y la vista a la bahía. Un viaje inolvidable explorando juntos nuevos horizontes.
+            </p>
+            <div class="memory-footer">
+              <span class="memory-quote">"Coleccionando postales que quedan en el alma."</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Momento Especial 3: Termales de Lodo -->
+        <article class="memory-card reveal" data-title="Risas en las Termales y Baño de Lodo" data-desc="18 de Septiembre de 2025 - Uno de los días más divertidos y relajantes, disfrutando de la naturaleza y riéndonos juntos." data-img="assets/images/IMG20250918150048.jpg">
+          <div class="memory-media-container">
+            <img src="assets/images/IMG20250918150048.jpg" alt="Risas en las Termales y Baño de Lodo" loading="lazy">
+          </div>
+          <div class="memory-content">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> 18 de Septiembre de 2025
+            </div>
+            <h3 class="memory-title">Risas en las Termales y Baño de Lodo</h3>
+            <p class="memory-desc">
+              Una tarde de relajación total en las aguas termales, cubiertos de lodo volcánico y riéndonos a carcajadas. La felicidad de ser nosotros mismos en todo momento.
+            </p>
+            <div class="memory-footer">
+              <span class="memory-quote">"El mejor equipo somos tú y yo."</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Momento Especial 4: Brindis por Nosotros -->
+        <article class="memory-card reveal" data-title="Un Brindis por Nosotros" data-desc="1 de Mayo de 2026 - Celebrando la complicidad, el respeto y el cariño mutuo que nos une cada día más." data-img="assets/images/IMG_0485.jpg">
+          <div class="memory-media-container">
+            <img src="assets/images/IMG_0485.jpg" alt="Un Brindis por Nosotros" loading="lazy">
+          </div>
+          <div class="memory-content">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> 1 de Mayo de 2026
+            </div>
+            <h3 class="memory-title">Un Brindis por Nuestro Amor</h3>
+            <p class="memory-desc">
+              Una velada especial brindando con flores y sonrisas por todo lo que hemos construido juntos y por el futuro tan hermoso que aún nos aguarda.
+            </p>
+            <div class="memory-footer">
+              <span class="memory-quote">"Por cada brindis vivido y los que aún faltan."</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         6. SECCIÓN DE VIDEOS
+         ======================================================== -->
+    <section class="section-container videos-section" id="videos">
+      <div class="section-header reveal">
+        <span class="section-tag">Recuerdos en Movimiento</span>
+        <h2 class="section-title">Nuestros Videos</h2>
+        <p class="section-description">Reviviendo nuestras risas, miradas y momentos inolvidables en video.</p>
+        <div class="divider-hearts"><span>🎥</span></div>
+      </div>
+
+      <div class="videos-grid">
+
+        <!-- Video 1: Risas y Complicidad (MP4 nativo) -->
+        <div class="video-card reveal">
+          <div class="video-player-wrapper">
+            <video class="custom-video" controls preload="metadata" poster="assets/images/IMG-20230409-WA0060.jpg">
+              <source src="assets/videos/VID-20230420-WA0067.mp4" type="video/mp4">
+              Tu navegador no soporta reproducción de videos.
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> 20 de Abril de 2023
+            </div>
+            <h3 class="video-title">Risas y Complicidad</h3>
+            <p class="video-desc">
+              Esos pequeños instantes espontáneos y cotidianos donde una simple risa juntos demuestra lo inmensamente felices que somos.
+            </p>
+            <div class="video-quote">
+              <span class="quote-mark">“</span>
+              Hay momentos que desearía que duren para siempre.
+              <span class="quote-mark">”</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 2: Nuestra Historia en Movimiento (MP4 nativo) -->
+        <div class="video-card reveal">
+          <div class="video-player-wrapper">
+            <video class="custom-video" controls preload="metadata" poster="assets/images/IMG_2253.jpg">
+              <source src="assets/videos/1e146084-99a6-42ca-affc-a4c600a11118.mp4" type="video/mp4">
+              Tu navegador no soporta reproducción de videos.
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> Instantes Compartidos
+            </div>
+            <h3 class="video-title">Nuestra Historia en Movimiento</h3>
+            <p class="video-desc">
+              Cada paso, cada aventura y la tranquilidad de caminar siempre de tu mano hacia el mismo destino.
+            </p>
+            <div class="video-quote">
+              <span class="quote-mark">“</span>
+              En cada gesto tuyo encuentro mi hogar.
+              <span class="quote-mark">”</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 3: Aventura y Recuerdos (Clip Especial) -->
+        <div class="video-card reveal">
+          <div class="video-player-wrapper">
+            <video class="custom-video" controls preload="metadata" poster="assets/images/IMG_5005.jpg">
+              <source src="assets/videos/IMG_4998.MOV" type="video/quicktime">
+              <source src="assets/videos/IMG_4998.MOV" type="video/mp4">
+              Tu navegador no soporta reproducción de videos.
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="memory-date-tag">
+              <span class="tag-icon">📅</span> Aventura Inolvidable
+            </div>
+            <h3 class="video-title">Recuerdo en las Montañas</h3>
+            <p class="video-desc">
+              Un viaje lleno de paisajes majestuosos y recuerdos en movimiento que atesoramos con mucho amor.
+            </p>
+            <div class="video-quote">
+              <span class="quote-mark">“</span>
+              Vivir aventuras a tu lado es mi pasatiempo favorito.
+              <span class="quote-mark">”</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         7. CARTA DE AMOR (PLACEHOLDER LISTO PARA TU TEXTO REAL)
+         ======================================================== -->
+    <section class="section-container letter-section" id="carta">
+      <div class="section-header reveal">
+        <span class="section-tag">Desde el Fondo del Alma</span>
+        <h2 class="section-title">Una Carta Para Ti <span class="heart-symbol">❤️</span></h2>
+        <p class="section-description">Palabras escritas desde el corazón para celebrar estos 4 años.</p>
+        <div class="divider-hearts"><span>💌</span></div>
+      </div>
+
+      <div class="letter-wrapper reveal">
+        <!-- Decoración de sobre y sello de cera -->
+        <div class="wax-seal">
+          <div class="seal-inner">❤️</div>
+        </div>
+
+        <!-- Contenedor con efecto de papel carta de lujo -->
+        <article class="letter-paper">
+          <div class="paper-texture"></div>
+          
+          <div class="letter-header">
+            <span class="letter-salutation">Mi Karen ❤️</span>
+            <span class="letter-date">16 de Septiembre</span>
+          </div>
+
+          <!-- Carta de Amor Real -->
+          <div class="letter-body">
+            <p>
+              Hoy cumplimos 4 años y todavía me parece increíble pensar en todo lo que hemos vivido desde ese 16 de septiembre de 2022.
+            </p>
+
+            <p>
+              Han sido 4 años de muchas cosas. Hemos tenido momentos muy bonitos, hemos salido, viajado, conocido lugares, nos hemos reído muchísimo y también hemos tenido momentos no tan fáciles. Pero al final de todo, aquí seguimos, juntos.
+            </p>
+
+            <p>
+              Cuando veo todas nuestras fotos me doy cuenta de que tenemos muchísimos recuerdos. Algunos grandes y otros que en su momento parecían cualquier cosa, pero que hoy me hacen sonreír cuando los veo.
+            </p>
+
+            <p>
+              Quiero agradecerte por estos 4 años, por estar conmigo, por aguantarme 😂, por las cosas buenas y también por las no tan buenas. Sé que no siempre soy el mejor expresando lo que siento, pero quiero que sepas que te quiero muchísimo y que eres una persona muy importante para mí.
+            </p>
+
+            <p>
+              Me gusta pensar en todo lo que todavía nos falta por vivir. Más viajes, más fotos, más salidas, más risas, más momentos juntos y muchas cosas que todavía ni imaginamos.
+            </p>
+
+            <p>
+              Gracias por estos 4 años, Karen. ❤️
+            </p>
+
+            <p>
+              Y si pudiera volver al 16 de septiembre de 2022 y empezar todo otra vez, te volvería a elegir a ti.
+            </p>
+
+            <p>
+              Espero poder seguir celebrando muchos años más contigo.
+            </p>
+          </div>
+
+          <div class="letter-footer">
+            <div class="letter-dedication">Te amo ❤️</div>
+            <div class="letter-signature">Feliz 4 años, mi amor.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         8. SECCIÓN FINAL & SORPRESA INTERACTIVA
+         ======================================================== -->
+    <section class="section-container final-section" id="final">
+      <div class="final-card reveal">
+        <div class="final-glow"></div>
+
+        <div class="final-quote-container">
+          <p class="final-quote">
+            "Si pudiera volver al comienzo de nuestra historia,
+            <span class="quote-highlight">te volvería a elegir.</span>"
+          </p>
+          
+          <p class="final-reply">Una y otra vez. ❤️</p>
+        </div>
+
+        <div class="final-interaction">
+          <p class="final-hint">Hay un detalle que aguarda por ti...</p>
+          
+          <!-- Botón de sorpresa interactiva -->
+          <button class="romantic-btn surprise-btn" id="openSurpriseBtn">
+            <span class="btn-sparkle">✨</span>
+            <span class="btn-text">Hay algo más que quiero decirte...</span>
+            <span class="btn-sparkle">✨</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+
+        <div class="final-credits">
+          <p>Feliz 4º Aniversario • Nuestra historia continúa</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       MODAL DE SORPRESA FINAL (MENSAJE SECRETO)
+       ======================================================== -->
+  <div class="surprise-modal-overlay" id="surpriseModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="surprise-modal-container">
+      <button class="modal-close-btn" id="closeSurpriseBtn" aria-label="Cerrar sorpresa">&times;</button>
+      
+      <div class="surprise-modal-content">
+        <div class="surprise-heart-burst">💖</div>
+        <span class="surprise-badge">Para Karen Johanna Laverde Fonseca</span>
+        
+        <h3 class="surprise-title">Mi Promesa Para Ti</h3>
+
+        <div class="surprise-message-box">
+          <p class="surprise-p" style="font-size: 1.35rem; color: #ffffff; margin-bottom: 20px;">
+            Y ojalá sea así...
+          </p>
+          <p class="surprise-quote" style="font-size: 2.2rem; color: var(--rose-primary); font-weight: 700; border: none; padding-top: 0;">
+            "Por el resto de mi vida. ❤️"
+          </p>
+        </div>
+
+        <div class="surprise-interactive-area">
+          <button class="romantic-btn mini-btn" id="modalHeartBurstBtn">
+            <span>¡Llenar la pantalla de corazones! ❤️</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL LIGHTBOX PARA LA GALERÍA DE FOTOS
+       ======================================================== -->
+  <div class="lightbox-overlay" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Cerrar visor">&times;</button>
+    <div class="lightbox-content">
+      <div class="lightbox-img-box" id="lightboxImgBox">
+        <!-- Se inyecta la foto real o placeholder dinámicamente -->
+        <div class="lightbox-placeholder-view" id="lightboxPlaceholderView">
+          <span class="lightbox-icon">📸</span>
+          <h4 id="lightboxTitle">Recuerdo</h4>
+          <p id="lightboxDesc">Detalles del momento</p>
+        </div>
+      </div>
+      <div class="lightbox-caption">
+        <span id="lightboxCaptionText">Recuerdo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script principal con toda la interactividad -->
+  <script src="js/script.js"></script>
+</body>
+</html>

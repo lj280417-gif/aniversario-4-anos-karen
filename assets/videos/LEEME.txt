@@ -1,0 +1,16 @@
+=========================================
+CARPETA DE VIDEOS - GUÍA DE REEMPLAZO
+=========================================
+
+Aquí podrás colocar los videos de su historia:
+
+1. Recomendación de nombres:
+   - video-1.mp4
+   - video-2.mp4
+   - video-especial.mp4
+
+2. Formatos recomendados:
+   - Formato estándar .mp4 (códec H.264) para máxima compatibilidad en iPhone, Android y PC.
+
+3. Dónde modificar:
+   - En index.html, en la sección de videos encontrarás las etiquetas <source src="assets/videos/video-1.mp4" type="video/mp4"> listas para recibir tus archivos.
