@@ -3,7 +3,7 @@
  * Optimizado para compatibilidad total con iOS Safari y GitHub Pages
  */
 
-const CACHE_NAME = 'nuestra-historia-v1';
+const CACHE_NAME = 'nuestra-historia-v2';
 
 // Recursos esenciales pre-cacheados
 const PRECACHE_ASSETS = [
