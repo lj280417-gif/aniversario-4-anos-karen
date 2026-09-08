@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSurpriseModal();
   initMusicPlayer();
   initSmoothScroll();
+  initServiceWorker();
 });
 
 // ==============================================================================
@@ -530,3 +531,22 @@ function initSmoothScroll() {
     });
   }
 }
+
+// ==============================================================================
+// 11. REGISTRO DE SERVICE WORKER PARA PWA (IPHONE Y ANDROID)
+// ==============================================================================
+function initServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then((registration) => {
+          console.info("PWA Service Worker registrado:", registration.scope);
+        })
+        .catch((error) => {
+          console.warn("Service Worker PWA no disponible:", error);
+        });
+    });
+  }
+}
+
