@@ -429,7 +429,7 @@ function triggerHeartConfetti() {
 }
 
 // ==============================================================================
-// 9. REPRODUCTOR DE MÚSICA FLOTANTE
+// 9. REPRODUCTOR DE MÚSICA FLOTANTE (AUTOPLAY + FALLBACK EN PRIMERA INTERACCIÓN)
 // ==============================================================================
 function initMusicPlayer() {
   const musicPlayer = document.getElementById("musicPlayer");
@@ -450,55 +450,107 @@ function initMusicPlayer() {
     musicTitle.textContent = ANNIVERSARY_CONFIG.songTitle;
   }
 
+  let userHasManuallyPaused = false;
+  let isPlaybackStarted = false;
+
   // Sincronización precisa con eventos nativos del elemento de audio
   audioElement.addEventListener("play", () => {
+    isPlaybackStarted = true;
     musicPlayer.classList.add("playing");
     if (musicStatus) {
       musicStatus.textContent = "Reproduciendo: Andrés Cepeda";
     }
+    removeInteractionListeners();
   });
 
   audioElement.addEventListener("pause", () => {
     musicPlayer.classList.remove("playing");
     if (musicStatus) {
-      musicStatus.textContent = "Pausado (Clic para reanudar)";
+      musicStatus.textContent = "Pausado";
     }
   });
 
   audioElement.addEventListener("ended", () => {
     musicPlayer.classList.remove("playing");
     if (musicStatus) {
-      musicStatus.textContent = "Haz clic para reproducir";
+      musicStatus.textContent = "Nuestra canción ❤️";
     }
   });
 
   audioElement.addEventListener("error", () => {
     musicPlayer.classList.remove("playing");
-    if (musicStatus) {
-      musicStatus.textContent = "Coloca por-el-resto-de-mi-vida.mp3 en assets/music/";
-    }
-    console.warn(
-      "Aviso: El archivo de música no se encuentra todavía en 'assets/music/por-el-resto-de-mi-vida.mp3'."
-    );
+    console.warn("Aviso: Comprobando archivo de música en assets/music/");
   });
 
-  // Función para alternar reproducción y pausa
+  // Eventos de usuario para fallback de reproducción en iOS / Safari
+  const interactionEvents = ["click", "touchstart", "touchend", "scroll", "keydown"];
+
+  function onFirstInteraction() {
+    if (isPlaybackStarted || userHasManuallyPaused) {
+      removeInteractionListeners();
+      return;
+    }
+
+    const playPromise = audioElement.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          isPlaybackStarted = true;
+          removeInteractionListeners();
+        })
+        .catch(() => {
+          // Si el navegador requiere interacción táctil directa en vez de scroll
+        });
+    }
+  }
+
+  function addInteractionListeners() {
+    interactionEvents.forEach((ev) => {
+      window.addEventListener(ev, onFirstInteraction, { passive: true, capture: true });
+    });
+  }
+
+  function removeInteractionListeners() {
+    interactionEvents.forEach((ev) => {
+      window.removeEventListener(ev, onFirstInteraction, { capture: true });
+    });
+  }
+
+  // 1. Intento de Autoplay inmediato al cargar la página
+  function attemptAutoplay() {
+    const playPromise = audioElement.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          isPlaybackStarted = true;
+          removeInteractionListeners();
+        })
+        .catch(() => {
+          // Bloqueado por política de Safari/iOS/navegador: activar fallback transparente
+          addInteractionListeners();
+        });
+    }
+  }
+
+  attemptAutoplay();
+
+  // Función para alternar reproducción y pausa manual desde el reproductor
   function toggleMusic(e) {
     if (e) {
       e.stopPropagation();
     }
 
     if (audioElement.paused) {
+      userHasManuallyPaused = false;
       const playPromise = audioElement.play();
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          console.warn("No se pudo iniciar la reproducción del audio:", error);
-          if (musicStatus) {
-            musicStatus.textContent = "Coloca por-el-resto-de-mi-vida.mp3 en assets/music/";
-          }
+          console.warn("No se pudo reanudar el audio:", error);
         });
       }
     } else {
+      userHasManuallyPaused = true;
+      removeInteractionListeners();
       audioElement.pause();
     }
   }
@@ -510,7 +562,6 @@ function initMusicPlayer() {
 
   // Evento al pulsar en cualquier parte de la píldora flotante
   musicPlayer.addEventListener("click", (e) => {
-    // Evitar doble invocación si se hizo clic en el botón interno
     if (e.target.closest("#musicToggleBtn")) return;
     toggleMusic(e);
   });
