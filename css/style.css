@@ -1927,3 +1927,331 @@ body {
   border-radius: 14px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
+
+/* ==========================================================================
+   18. PANTALLA DE BLOQUEO TEMPORAL (HASTA EL 16 DE SEPTIEMBRE DE 2026)
+   ========================================================================== */
+
+/* Bloqueo estricto del scroll y ocultamiento total de la historia */
+body.is-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+body.is-locked #mainNav,
+body.is-locked #musicPlayer,
+body.is-locked header#hero,
+body.is-locked main,
+body.is-locked .surprise-modal-overlay,
+body.is-locked .lightbox-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Contenedor principal de la pantalla de bloqueo */
+.lock-screen-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 25%, #240b27 0%, #120516 50%, #07020a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lock-screen-container.unlocked {
+  display: none !important;
+}
+
+.lock-screen-container.unlocking {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.04);
+}
+
+/* Resplandor decorativo de fondo */
+.lock-backdrop-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(650px, 90vw);
+  height: min(650px, 90vw);
+  background: radial-gradient(circle, rgba(255, 77, 109, 0.18) 0%, rgba(230, 184, 125, 0.08) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tarjeta central en glassmorphism */
+.lock-card {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  width: 100%;
+  padding: 44px 34px;
+  border-radius: 30px;
+  background: rgba(26, 12, 30, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 182, 193, 0.28);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(255, 77, 109, 0.22);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Corazón central con halo pulsante */
+.lock-heart-container {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.lock-heart-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--rose-primary);
+  opacity: 0;
+  animation: lockPulseRing 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.lock-heart-ring.delay {
+  animation-delay: 1.4s;
+}
+
+@keyframes lockPulseRing {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+.lock-heart-icon {
+  font-size: 2.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 16px var(--rose-glow));
+  animation: lockHeartBeat 2s infinite ease-in-out;
+}
+
+@keyframes lockHeartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.18);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* Insignia superior */
+.lock-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose-blush);
+  padding: 5px 18px;
+  border-radius: 20px;
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 182, 193, 0.25);
+  margin-bottom: 12px;
+}
+
+/* Título y subtítulo */
+.lock-title {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 25px rgba(255, 77, 109, 0.4);
+}
+
+.lock-title .heart-symbol {
+  color: var(--rose-primary);
+  display: inline-block;
+}
+
+.lock-tagline {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  text-shadow: 0 0 16px var(--gold-glow);
+}
+
+.lock-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--champagne);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  max-width: 440px;
+}
+
+/* Indicador de estado de bloqueo */
+.lock-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 20px;
+  background: rgba(56, 4, 14, 0.65);
+  border: 1px solid rgba(255, 77, 109, 0.4);
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(255, 77, 109, 0.25);
+  margin-bottom: 24px;
+}
+
+.lock-status-icon {
+  font-size: 1rem;
+}
+
+.lock-status-text {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose-light);
+}
+
+/* Grid del contador elegante */
+.lock-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+.lock-countdown-card {
+  background: rgba(15, 6, 19, 0.78);
+  border: 1px solid rgba(255, 182, 193, 0.22);
+  border-radius: 18px;
+  padding: 18px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.45), 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.lock-countdown-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 77, 109, 0.45);
+}
+
+.lock-countdown-num {
+  font-family: var(--font-sans);
+  font-size: 2.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 16px var(--rose-glow);
+}
+
+.lock-countdown-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  color: var(--rose-blush);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* Mensaje romántico inferior */
+.lock-promise {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  color: var(--champagne);
+  line-height: 1.3;
+  margin-top: 2px;
+  text-shadow: 0 0 12px rgba(253, 240, 213, 0.3);
+}
+
+/* Responsive Móvil (Pantallas pequeñas y teléfonos) */
+@media (max-width: 600px) {
+  .lock-card {
+    padding: 32px 18px;
+    border-radius: 24px;
+  }
+
+  .lock-title {
+    font-size: 2.1rem;
+  }
+
+  .lock-tagline {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+  }
+
+  .lock-quote {
+    font-size: 1.02rem;
+    margin-bottom: 20px;
+  }
+
+  /* Grid 2x2 en móviles para que los números se vean grandes y claros */
+  .lock-countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .lock-countdown-card {
+    padding: 14px 10px;
+    border-radius: 16px;
+  }
+
+  .lock-countdown-num {
+    font-size: 2.1rem;
+  }
+
+  .lock-countdown-label {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+  }
+
+  .lock-promise {
+    font-size: 1.45rem;
+  }
+}
+

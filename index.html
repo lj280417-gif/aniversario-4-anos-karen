@@ -31,6 +31,52 @@
   <!-- Lienzo interactivo de corazones y estrellas flotantes -->
   <canvas id="ambientCanvas"></canvas>
 
+  <!-- ========================================================
+       PANTALLA DE BLOQUEO TEMPORAL (HASTA EL 16 DE SEPTIEMBRE DE 2026)
+       ======================================================== -->
+  <div class="lock-screen-container" id="lockScreen" aria-live="polite">
+    <div class="lock-backdrop-glow"></div>
+    <div class="lock-card">
+      <div class="lock-heart-container">
+        <div class="lock-heart-ring"></div>
+        <div class="lock-heart-ring delay"></div>
+        <div class="lock-heart-icon">❤️</div>
+      </div>
+
+      <div class="lock-badge">NUESTRA HISTORIA</div>
+      <h1 class="lock-title">KAREN <span class="heart-symbol">❤️</span></h1>
+      <p class="lock-tagline">4 AÑOS CONTIGO</p>
+
+      <p class="lock-quote">“Nuestra historia está a punto de continuar...”</p>
+
+      <div class="lock-status-indicator">
+        <span class="lock-status-icon">🔒</span>
+        <span class="lock-status-text">SE DESBLOQUEA EN</span>
+      </div>
+
+      <div class="lock-countdown-grid" id="lockCountdownGrid">
+        <div class="lock-countdown-card">
+          <span class="lock-countdown-num" id="lockDays">00</span>
+          <span class="lock-countdown-label">DÍAS</span>
+        </div>
+        <div class="lock-countdown-card">
+          <span class="lock-countdown-num" id="lockHours">00</span>
+          <span class="lock-countdown-label">HORAS</span>
+        </div>
+        <div class="lock-countdown-card">
+          <span class="lock-countdown-num" id="lockMinutes">00</span>
+          <span class="lock-countdown-label">MINUTOS</span>
+        </div>
+        <div class="lock-countdown-card">
+          <span class="lock-countdown-num" id="lockSeconds">00</span>
+          <span class="lock-countdown-label">SEGUNDOS</span>
+        </div>
+      </div>
+
+      <p class="lock-promise">Nos vemos el 16 de septiembre. ❤️</p>
+    </div>
+  </div>
+
   <!-- Reproductor de música flotante -->
   <div class="music-player-pill" id="musicPlayer" title="Reproducir / Pausar nuestra canción">
     <button class="music-btn" id="musicToggleBtn" aria-label="Controlar música">

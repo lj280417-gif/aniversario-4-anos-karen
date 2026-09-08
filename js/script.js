@@ -9,8 +9,11 @@
 // 1. CONFIGURACIÓN CENTRALIZADA (DATOS REALES DE NUESTRA HISTORIA)
 // ==============================================================================
 const ANNIVERSARY_CONFIG = {
-  // Fecha exacta de inicio: 16 de septiembre de 2022 (desde el inicio del día)
+  // Fecha exacta de inicio de la relación: 16 de septiembre de 2022 (desde el inicio del día)
   startDate: "2022-09-16T00:00:00",
+
+  // Fecha exacta de desbloqueo: 16 de septiembre de 2026 a las 00:00:00
+  unlockDate: "2026-09-16T00:00:00",
 
   // Nombres
   partnerName: "Karen Johanna Laverde Fonseca",
@@ -26,16 +29,120 @@ const ANNIVERSARY_CONFIG = {
 // ==============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   initAmbientCanvas();
+  initLockSystem();
   initScrollReveal();
   initNavSpy();
   initLiveCounter();
   initGalleryLightbox();
   initGalleryExpand();
   initSurpriseModal();
-  initMusicPlayer();
   initSmoothScroll();
   initServiceWorker();
 });
+
+// ==============================================================================
+// 2.1. SISTEMA DE BLOQUEO TEMPORAL HASTA EL 16 DE SEPTIEMBRE DE 2026
+// ==============================================================================
+let isAppLocked = false;
+let lockIntervalId = null;
+
+function parseUnlockDate(dateStr) {
+  // Compatible con todos los navegadores móviles (iOS Safari, Chrome, etc.)
+  const parts = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/);
+  if (parts) {
+    return new Date(
+      parseInt(parts[1], 10),
+      parseInt(parts[2], 10) - 1, // Mes base 0 (8 = Septiembre)
+      parseInt(parts[3], 10),
+      parseInt(parts[4], 10),
+      parseInt(parts[5], 10),
+      parseInt(parts[6], 10)
+    );
+  }
+  return new Date(dateStr);
+}
+
+function initLockSystem() {
+  const lockScreen = document.getElementById("lockScreen");
+  const lockDays = document.getElementById("lockDays");
+  const lockHours = document.getElementById("lockHours");
+  const lockMinutes = document.getElementById("lockMinutes");
+  const lockSeconds = document.getElementById("lockSeconds");
+
+  if (!lockScreen) return;
+
+  const targetDate = parseUnlockDate(ANNIVERSARY_CONFIG.unlockDate);
+  const now = new Date();
+
+  // Comprobar si ya es 16 de septiembre de 2026 a las 00:00:00 o posterior
+  if (now >= targetDate) {
+    // ESTADO DESBLOQUEADO: Acceso total directo a la historia
+    lockScreen.classList.add("unlocked");
+    document.body.classList.remove("is-locked");
+    isAppLocked = false;
+    initMusicPlayer();
+    return;
+  }
+
+  // ESTADO BLOQUEADO: Proteger la experiencia hasta el 16 de septiembre de 2026 00:00:00
+  isAppLocked = true;
+  document.body.classList.add("is-locked");
+  lockScreen.classList.remove("unlocked", "unlocking");
+
+  function updateLockCountdown() {
+    const currentNow = new Date();
+    const diff = targetDate - currentNow;
+
+    if (diff <= 0) {
+      // Desbloqueo automático al llegar al segundo cero
+      if (lockIntervalId) {
+        clearInterval(lockIntervalId);
+        lockIntervalId = null;
+      }
+      triggerUnlockSequence();
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+
+    if (lockDays) lockDays.textContent = String(days).padStart(2, "0");
+    if (lockHours) lockHours.textContent = String(hours).padStart(2, "0");
+    if (lockMinutes) lockMinutes.textContent = String(minutes).padStart(2, "0");
+    if (lockSeconds) lockSeconds.textContent = String(seconds).padStart(2, "0");
+  }
+
+  // Ejecutar inmediatamente para evitar saltos y luego cada segundo exacto
+  updateLockCountdown();
+  lockIntervalId = setInterval(updateLockCountdown, 1000);
+}
+
+function triggerUnlockSequence() {
+  const lockScreen = document.getElementById("lockScreen");
+  isAppLocked = false;
+
+  // 1. Desbloquear scroll y mostrar secciones principales
+  document.body.classList.remove("is-locked");
+
+  // 2. Transición elegante con fade-out de la pantalla de bloqueo
+  if (lockScreen) {
+    lockScreen.classList.add("unlocking");
+    setTimeout(() => {
+      lockScreen.classList.add("unlocked");
+    }, 1200);
+  }
+
+  // 3. Celebrar con lluvia de corazones
+  if (typeof triggerHeartConfetti === "function") {
+    triggerHeartConfetti();
+  }
+
+  // 4. Iniciar música según configuración (autoplay / fallback en interacción)
+  initMusicPlayer();
+}
 
 // ==============================================================================
 // 3. LIENZO INTERACTIVO DE CORAZONES Y ESTRELLAS (CANVAS)
@@ -431,7 +538,10 @@ function triggerHeartConfetti() {
 // ==============================================================================
 // 9. REPRODUCTOR DE MÚSICA FLOTANTE (AUTOPLAY + FALLBACK EN PRIMERA INTERACCIÓN)
 // ==============================================================================
+let isMusicPlayerInitialized = false;
+
 function initMusicPlayer() {
+  if (isMusicPlayerInitialized) return;
   const musicPlayer = document.getElementById("musicPlayer");
   const musicToggleBtn = document.getElementById("musicToggleBtn");
   const audioElement = document.getElementById("audioElement");
@@ -439,6 +549,7 @@ function initMusicPlayer() {
   const musicStatus = document.getElementById("musicStatus");
 
   if (!musicPlayer || !audioElement) return;
+  isMusicPlayerInitialized = true;
 
   // Garantizar la ruta exacta del archivo configurado
   const exactPath = ANNIVERSARY_CONFIG.songPath || "assets/music/por-el-resto-de-mi-vida.mp3";
