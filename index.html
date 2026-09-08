@@ -23,10 +23,334 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-180.png">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon.png">
 
-  <!-- Hoja de estilos principal -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Hoja de estilos principal con cache-busting -->
+  <link rel="stylesheet" href="css/style.css?v=5.0">
+
+  <style id="criticalLockStyles">
+    /* ==========================================================
+       BLOQUEO TEMPORAL CRÍTICO (INLINE INQUEBRANTABLE)
+       ========================================================== */
+    body.is-locked {
+      overflow: hidden !important;
+      height: 100vh !important;
+      min-height: 100vh !important;
+      min-height: 100dvh !important;
+      position: fixed !important;
+      width: 100% !important;
+      touch-action: none !important;
+    }
+
+    /* Ocultar absolutamente TODO el contenido mientras esté bloqueado */
+    body.is-locked > *:not(#lockScreen) {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      opacity: 0 !important;
+    }
+
+    /* Salvaguarda explícita por selector */
+    body.is-locked #hero,
+    body.is-locked .hero-section,
+    body.is-locked #mainNav,
+    body.is-locked .floating-nav,
+    body.is-locked #musicPlayer,
+    body.is-locked .music-player-pill,
+    body.is-locked main,
+    body.is-locked section,
+    body.is-locked header,
+    body.is-locked nav,
+    body.is-locked .surprise-modal-overlay,
+    body.is-locked .lightbox-overlay,
+    body.is-locked #ambientCanvas {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      opacity: 0 !important;
+    }
+
+    /* Pantalla de bloqueo al 100% absoluto de la pantalla */
+    #lockScreen {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      inset: 0 !important;
+      width: 100% !important;
+      width: 100vw !important;
+      height: 100% !important;
+      height: 100vh !important;
+      min-height: 100dvh !important;
+      z-index: 2147483647 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      background: radial-gradient(circle at 50% 25%, #240b27 0%, #120516 50%, #07020a 100%) !important;
+      margin: 0 !important;
+      padding: 20px !important;
+      box-sizing: border-box !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    #lockScreen.unlocked {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    #lockScreen.unlocking {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: scale(1.04) !important;
+    }
+
+    #lockScreen .lock-backdrop-glow {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: min(650px, 90vw) !important;
+      height: min(650px, 90vw) !important;
+      background: radial-gradient(circle, rgba(255, 77, 109, 0.2) 0%, rgba(230, 184, 125, 0.08) 45%, transparent 70%) !important;
+      pointer-events: none !important;
+      z-index: 1 !important;
+    }
+
+    #lockScreen .lock-card {
+      position: relative !important;
+      z-index: 2 !important;
+      max-width: 580px !important;
+      width: 100% !important;
+      padding: 40px 32px !important;
+      border-radius: 28px !important;
+      background: rgba(26, 12, 30, 0.88) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255, 182, 193, 0.28) !important;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 77, 109, 0.25) !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+    }
+
+    #lockScreen .lock-heart-container {
+      position: relative !important;
+      width: 76px !important;
+      height: 76px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-bottom: 16px !important;
+    }
+
+    #lockScreen .lock-heart-ring {
+      position: absolute !important;
+      inset: 0 !important;
+      border-radius: 50% !important;
+      border: 2px solid #ff4d6d !important;
+      opacity: 0 !important;
+      animation: lockPulseRing 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite !important;
+    }
+
+    #lockScreen .lock-heart-ring.delay {
+      animation-delay: 1.4s !important;
+    }
+
+    @keyframes lockPulseRing {
+      0% { transform: scale(0.65); opacity: 0.9; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+
+    #lockScreen .lock-heart-icon {
+      font-size: 2.6rem !important;
+      line-height: 1 !important;
+      filter: drop-shadow(0 0 16px rgba(255, 77, 109, 0.6)) !important;
+      animation: lockHeartBeat 2s infinite ease-in-out !important;
+    }
+
+    @keyframes lockHeartBeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.18); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.12); }
+      70% { transform: scale(1); }
+    }
+
+    #lockScreen .lock-badge {
+      display: inline-block !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 0.76rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 3px !important;
+      text-transform: uppercase !important;
+      color: #ffb3c1 !important;
+      padding: 5px 18px !important;
+      border-radius: 20px !important;
+      background: rgba(255, 77, 109, 0.12) !important;
+      border: 1px solid rgba(255, 182, 193, 0.25) !important;
+      margin-bottom: 12px !important;
+    }
+
+    #lockScreen .lock-title {
+      font-family: 'Playfair Display', Georgia, serif !important;
+      font-size: 2.6rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      letter-spacing: 1.5px !important;
+      margin: 0 0 4px 0 !important;
+      text-shadow: 0 0 25px rgba(255, 77, 109, 0.4) !important;
+    }
+
+    #lockScreen .lock-title .heart-symbol {
+      color: #ff4d6d !important;
+      display: inline-block !important;
+    }
+
+    #lockScreen .lock-tagline {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 1.08rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 2.5px !important;
+      color: #e6b87d !important;
+      text-transform: uppercase !important;
+      margin: 0 0 16px 0 !important;
+      text-shadow: 0 0 16px rgba(230, 184, 125, 0.35) !important;
+    }
+
+    #lockScreen .lock-quote {
+      font-family: 'Playfair Display', Georgia, serif !important;
+      font-style: italic !important;
+      font-size: 1.15rem !important;
+      color: #fdf0d5 !important;
+      line-height: 1.55 !important;
+      margin: 0 0 22px 0 !important;
+      max-width: 440px !important;
+    }
+
+    #lockScreen .lock-status-indicator {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 7px 20px !important;
+      background: rgba(56, 4, 14, 0.65) !important;
+      border: 1px solid rgba(255, 77, 109, 0.4) !important;
+      border-radius: 30px !important;
+      box-shadow: 0 0 20px rgba(255, 77, 109, 0.25) !important;
+      margin-bottom: 24px !important;
+    }
+
+    #lockScreen .lock-status-icon {
+      font-size: 1rem !important;
+    }
+
+    #lockScreen .lock-status-text {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      color: #ff758f !important;
+    }
+
+    #lockScreen .lock-countdown-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 14px !important;
+      width: 100% !important;
+      margin: 0 0 24px 0 !important;
+    }
+
+    #lockScreen .lock-countdown-card {
+      background: rgba(15, 6, 19, 0.8) !important;
+      border: 1px solid rgba(255, 182, 193, 0.22) !important;
+      border-radius: 18px !important;
+      padding: 18px 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+      box-sizing: border-box !important;
+    }
+
+    #lockScreen .lock-countdown-num {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 2.35rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      line-height: 1.1 !important;
+      letter-spacing: 1px !important;
+      font-variant-numeric: tabular-nums !important;
+      text-shadow: 0 0 16px rgba(255, 77, 109, 0.5) !important;
+    }
+
+    #lockScreen .lock-countdown-label {
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 0.72rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 1.8px !important;
+      color: #ffb3c1 !important;
+      text-transform: uppercase !important;
+      margin-top: 6px !important;
+    }
+
+    #lockScreen .lock-promise {
+      font-family: 'Caveat', cursive, sans-serif !important;
+      font-size: 1.6rem !important;
+      color: #fdf0d5 !important;
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      text-shadow: 0 0 12px rgba(253, 240, 213, 0.3) !important;
+    }
+
+    @media (max-width: 600px) {
+      #lockScreen {
+        padding: 16px !important;
+      }
+      #lockScreen .lock-card {
+        padding: 30px 18px !important;
+        border-radius: 22px !important;
+      }
+      #lockScreen .lock-title {
+        font-size: 2.1rem !important;
+      }
+      #lockScreen .lock-tagline {
+        font-size: 0.95rem !important;
+        letter-spacing: 2px !important;
+      }
+      #lockScreen .lock-quote {
+        font-size: 1.02rem !important;
+        margin-bottom: 20px !important;
+      }
+      #lockScreen .lock-countdown-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        margin-bottom: 20px !important;
+      }
+      #lockScreen .lock-countdown-card {
+        padding: 14px 10px !important;
+        border-radius: 16px !important;
+      }
+      #lockScreen .lock-countdown-num {
+        font-size: 2.1rem !important;
+      }
+      #lockScreen .lock-countdown-label {
+        font-size: 0.68rem !important;
+        letter-spacing: 1.5px !important;
+      }
+      #lockScreen .lock-promise {
+        font-size: 1.45rem !important;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="is-locked">
 
   <!-- Lienzo interactivo de corazones y estrellas flotantes -->
   <canvas id="ambientCanvas"></canvas>
@@ -76,6 +400,60 @@
       <p class="lock-promise">Nos vemos el 16 de septiembre. ❤️</p>
     </div>
   </div>
+
+  <!-- Script crítico de bloqueo temporal (se ejecuta inmediatamente) -->
+  <script id="criticalLockScript">
+    (function() {
+      // 16 de septiembre de 2026 a las 00:00:00 (hora local)
+      var UNLOCK_DATE = new Date(2026, 8, 16, 0, 0, 0);
+
+      function updateLockStatus() {
+        var now = new Date();
+        var diff = UNLOCK_DATE - now;
+
+        if (diff <= 0) {
+          // Desbloquear
+          document.body.classList.remove('is-locked');
+          var ls = document.getElementById('lockScreen');
+          if (ls) {
+            ls.classList.add('unlocked');
+          }
+          if (window._criticalLockInterval) {
+            clearInterval(window._criticalLockInterval);
+            window._criticalLockInterval = null;
+          }
+          if (typeof window.triggerUnlockSequence === 'function') {
+            window.triggerUnlockSequence();
+          }
+          return false;
+        }
+
+        // Mantener bloqueo estricto
+        document.body.classList.add('is-locked');
+        var totalSec = Math.floor(diff / 1000);
+        var days = Math.floor(totalSec / 86400);
+        var hours = Math.floor((totalSec % 86400) / 3600);
+        var minutes = Math.floor((totalSec % 3600) / 60);
+        var seconds = Math.floor(totalSec % 60);
+
+        var d = document.getElementById('lockDays');
+        var h = document.getElementById('lockHours');
+        var m = document.getElementById('lockMinutes');
+        var s = document.getElementById('lockSeconds');
+
+        if (d) d.textContent = String(days).padStart(2, '0');
+        if (h) h.textContent = String(hours).padStart(2, '0');
+        if (m) m.textContent = String(minutes).padStart(2, '0');
+        if (s) s.textContent = String(seconds).padStart(2, '0');
+        return true;
+      }
+
+      // Ejecutar síncronamente al leer el elemento
+      if (updateLockStatus()) {
+        window._criticalLockInterval = setInterval(updateLockStatus, 1000);
+      }
+    })();
+  </script>
 
   <!-- Reproductor de música flotante -->
   <div class="music-player-pill" id="musicPlayer" title="Reproducir / Pausar nuestra canción">
@@ -1005,7 +1383,7 @@
     </div>
   </div>
 
-  <!-- Script principal con toda la interactividad -->
-  <script src="js/script.js"></script>
+  <!-- Script principal con toda la interactividad (cache-busting v5.0) -->
+  <script src="js/script.js?v=5.0"></script>
 </body>
 </html>

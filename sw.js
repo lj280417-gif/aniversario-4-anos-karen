@@ -3,12 +3,14 @@
  * Optimizado para compatibilidad total con iOS Safari y GitHub Pages
  */
 
-const CACHE_NAME = 'nuestra-historia-v4';
+const CACHE_NAME = 'nuestra-historia-v5';
 
 // Recursos esenciales pre-cacheados
 const PRECACHE_ASSETS = [
   './',
   './index.html',
+  './css/style.css?v=5.0',
+  './js/script.js?v=5.0',
   './css/style.css',
   './js/script.js',
   './manifest.json',
@@ -75,7 +77,27 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Recursos estáticos (CSS, JS, imágenes): Cache-first con actualización en segundo plano
+  // CSS, JS y recursos versionados: Network-first con fallback a caché
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.search.includes('v=')) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match(request);
+        })
+    );
+    return;
+  }
+
+  // Recursos estáticos (imágenes, fuentes, etc.): Cache-first con actualización en segundo plano
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {

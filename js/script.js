@@ -116,6 +116,13 @@ function initLockSystem() {
   }
 
   // Ejecutar inmediatamente para evitar saltos y luego cada segundo exacto
+  if (window._criticalLockInterval) {
+    clearInterval(window._criticalLockInterval);
+    window._criticalLockInterval = null;
+  }
+  if (lockIntervalId) {
+    clearInterval(lockIntervalId);
+  }
   updateLockCountdown();
   lockIntervalId = setInterval(updateLockCountdown, 1000);
 }
@@ -123,6 +130,15 @@ function initLockSystem() {
 function triggerUnlockSequence() {
   const lockScreen = document.getElementById("lockScreen");
   isAppLocked = false;
+
+  if (lockIntervalId) {
+    clearInterval(lockIntervalId);
+    lockIntervalId = null;
+  }
+  if (window._criticalLockInterval) {
+    clearInterval(window._criticalLockInterval);
+    window._criticalLockInterval = null;
+  }
 
   // 1. Desbloquear scroll y mostrar secciones principales
   document.body.classList.remove("is-locked");
@@ -143,6 +159,8 @@ function triggerUnlockSequence() {
   // 4. Iniciar música según configuración (autoplay / fallback en interacción)
   initMusicPlayer();
 }
+
+window.triggerUnlockSequence = triggerUnlockSequence;
 
 // ==============================================================================
 // 3. LIENZO INTERACTIVO DE CORAZONES Y ESTRELLAS (CANVAS)
@@ -704,6 +722,7 @@ function initServiceWorker() {
         .register("./sw.js")
         .then((registration) => {
           console.info("PWA Service Worker registrado:", registration.scope);
+          registration.update();
         })
         .catch((error) => {
           console.warn("Service Worker PWA no disponible:", error);

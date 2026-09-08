@@ -1936,36 +1936,56 @@ body {
 body.is-locked {
   overflow: hidden !important;
   height: 100vh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
   position: fixed !important;
   width: 100% !important;
+  touch-action: none !important;
 }
 
-body.is-locked #mainNav,
-body.is-locked #musicPlayer,
-body.is-locked header#hero,
-body.is-locked main,
-body.is-locked .surprise-modal-overlay,
-body.is-locked .lightbox-overlay {
+/* Ocultar absolutamente TODO excepto la pantalla de bloqueo */
+body.is-locked > *:not(#lockScreen) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+body.is-locked #hero,
+body.is-locked .hero-section,
+body.is-locked #mainNav,
+body.is-locked .floating-nav,
+body.is-locked #musicPlayer,
+body.is-locked .music-player-pill,
+body.is-locked main,
+body.is-locked section,
+body.is-locked header,
+body.is-locked nav,
+body.is-locked .surprise-modal-overlay,
+body.is-locked .lightbox-overlay,
+body.is-locked #ambientCanvas {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
 }
 
 /* Contenedor principal de la pantalla de bloqueo */
+#lockScreen,
 .lock-screen-container {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  z-index: 99999;
-  background: radial-gradient(circle at 50% 25%, #240b27 0%, #120516 50%, #07020a 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100dvh !important;
+  z-index: 2147483647 !important;
+  background: radial-gradient(circle at 50% 25%, #240b27 0%, #120516 50%, #07020a 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px 16px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
   transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
